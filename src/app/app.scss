@@ -14,3 +14,157 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.modalTransparent{
+    .content
+    {
+        background-color: rgba(0,0,0,.8);
+    }
+}
+ion-menu {
+    &.esquerda{        
+        background: {
+          image: url(../assets/imgs/bg_menu.png);
+          color: rgba(black,.6);
+          repeat: no-repeat;
+          position: 0 0;       
+        }
+
+        ion-title{
+            p{
+                display: flex;
+                position: relative;
+                align-items: center;
+                ion-icon{
+                    font-size: 35px;
+                }
+                color: white;
+                font-size: 14px;
+                span{
+                    display: inline-block;
+                    padding-left: 48px;
+                    &::after{
+                        position: absolute;
+                        content: "";
+                        top: 0;
+                        left: 32px;
+                        width: 32px;
+                        height: 32px;
+                        background-image: url(../assets/icon/logo_menu.png);
+                        background-position: top left;
+                        background-repeat: no-repeat;
+                    }
+                }
+                strong{
+                    font-size: 20px;
+                    padding-left: 5px;
+                }
+            }
+        }
+
+        
+        &.show-menu{                                   
+    
+            animation-name: MENU-MOVE;
+            animation-duration: .2s;
+            animation-timing-function: ease-out;   
+            animation-iteration-count: 1;
+        }
+        .menu-inner{
+            &::after {
+              content: "";
+              display: block;
+              width: 100vw;
+              height: 100vh;
+            }
+
+            box-shadow: 0 0 0 !important;
+            .header{
+                &::after{
+                    background: none;
+                }
+            }
+            .scroll-content{
+                overflow: hidden;
+            }
+            &, .content, .toolbar-background, .item{
+                background: none;
+            }
+            ion-list{
+                padding-top: 0;
+                .item{
+                    color: white;
+                    ion-thumbnail{
+                        min-width: 16px;
+                        min-height: 16px;
+                        text-align: center;
+                        img{
+                            width: auto !important;
+                            height: 20px;          
+                            display: block;
+                            margin: 0 auto;              
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+ion-menu[type=overlay] .show-backdrop{
+    opacity: 0 !important;
+}
+.bar-button-menutoggle
+{
+    color: map-get($map: $colors, $key: primary);
+    position: relative;
+    top: 5px;
+    &::after{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 45px;
+        width: 32px;
+        height: 32px;
+        background: {
+            image: url(../assets/icon/logo_menu.png);
+            position: top left;
+            repeat: no-repeat;
+        }
+    }
+}
+
+
+.alert-md {
+    [aria-checked=true] {
+
+        .alert-radio-icon{
+            border-color: map-get($map: $colors, $key: checked);
+        }
+
+        .alert-radio-inner{
+            background-color: map-get($map: $colors, $key: checked);
+        }
+
+        .alert-radio-label {
+            color: map-get($map: $colors, $key: checked);
+        }
+
+    }
+    .alert-button
+    {
+        color: map-get($map: $colors, $key: checked);
+    }
+
+}
+
+
+@-webkit-keyframes MENU-MOVE {
+  from {
+    background-position-x: -150px;
+    background-position-y: -240px;    
+
+  }
+  to {
+    background-position-x: 0;
+    background-position-y: 0;
+  }
+}

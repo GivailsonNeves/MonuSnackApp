@@ -1,0 +1,23 @@
+page-login {
+    ion-content{
+        &.content{
+            background: map-get($map: $colors, $key: destak) 
+                    url(../assets/imgs/bg_fundo.png) 
+                    top left no-repeat;
+            background-size: cover;
+        }
+        form{
+            .item{
+                background-color: transparent;     
+                padding-left: 0;     
+                input{
+                    color: map-get($map: $colors, $key: light);
+                }      
+            }
+            .button{
+                margin-top: 20px;
+            }
+        }
+        
+    }
+}

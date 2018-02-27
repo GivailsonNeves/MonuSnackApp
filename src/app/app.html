@@ -1,19 +1,49 @@
-<ion-menu [content]="content">
+<!-- Menu de navegação principal -->
+<ion-menu side="left" class="esquerda" show [content]="content">
+  <ion-header>    
+    <ion-toolbar>
+      <ion-title menuClose>        
+        <p>
+          <ion-icon color="primary" name="arrow-back"></ion-icon> 
+          <span>Bem vindo(a),</span> 
+          <strong> Káysha!</strong>
+        </p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-list padding="left" no-lines>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-thumbnail item-start>
+          <img src="../assets/icon/{{p.icon}}">
+        </ion-thumbnail>
+        {{p.title}}
+      </button>
+      <button ion-item menuClose>
+        <ion-icon color="primary" name="power"></ion-icon>
+        &nbsp;&nbsp; Sair
+      </button>
+    </ion-list>    
+  </ion-content>
+
+</ion-menu>
+<!-- Menu de navegação principal -->
+
+<!-- Visualização de histórico de compras -->
+<ion-menu side="right" [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Histórico de gastos</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+    <!-- conteúdo do histórico -->
   </ion-content>
 
 </ion-menu>
+<!-- Visualização de histórico de compras -->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

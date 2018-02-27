@@ -1,0 +1,15 @@
+<div>
+  <div class="imagem-area">
+    <span class="badge">{{snack.quantidade}}</span>
+    <div class="imagem">
+      <img [src]="snack.imagem" [alt]="snack.nome">
+    </div>
+    <div class="area-preco">
+      <span>{{snack.preco}}</span>
+    </div>
+  </div>
+  <div class="snack-info">
+    <h5>{{snack.categoria.nome}}</h5>
+    <p>{{snack.nome}}</p>
+  </div>
+</div>

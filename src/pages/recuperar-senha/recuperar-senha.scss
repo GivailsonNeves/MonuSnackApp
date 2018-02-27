@@ -1,0 +1,16 @@
+page-recuperar-senha {
+    .button{
+        margin-top: 30px;
+        img{
+            max-height: 100%;
+        }
+    }
+    h2{
+        color: map-get($colors, primary);
+        margin-top: 20px;
+    }
+    p{
+        color: map-get($colors, light);
+    }
+    
+}

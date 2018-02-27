@@ -1,0 +1,80 @@
+snack-item {
+    margin-bottom: 20px;    
+    .imagem-area{
+        text-align: center;
+        position: relative;
+        border: 1px rgba(gray, .2) solid;
+        margin-bottom: 20px;
+        .badge{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: white;
+            opacity: .7;
+            background-color: map-get($map: $colors, $key: danger);
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 2px 5px;
+            text-align: center;
+            min-width: 20px;
+            font-size: 11px;
+        }
+        .imagem{            
+            height: 130px;    
+            display: flex;    
+            justify-content: space-around;
+            img{
+                align-self: center;
+                max-height: 120px;
+            }
+        }
+        .area-preco{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(black,.7);
+            color: white;
+            padding: 5px 10px;
+            span{
+                text-align: right;
+                display: block;
+                font-size: 22px;
+                margin-left: 32px;
+                color: map-get($map: $colors, $key: primary);
+                font-weight: bold;
+                position: relative;
+                &::before{
+                    position: absolute;
+                    content: "";
+                    width: 18px;
+                    height: 23px;
+                    left: -30px;
+                    background: {
+                        image: url(../assets/icon/monueda_branca.png);
+                        repeat: no-repeat;
+                        position: center;
+                        size: 12px;
+                    }
+                }
+            }
+            
+        }        
+
+    }
+    .snack-info {
+      h5 {
+        padding: 0;
+        margin: 0;
+        color: map-get($map: $colors, $key: danger) !important;
+      }
+      p{
+          margin: 0;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-bottom: 15px;
+      }
+    }
+
+}
