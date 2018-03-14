@@ -5,5 +5,24 @@ page-comprar {
             max-height: 100%;
         }
     }
+    ion-card
+    {
+        ion-card-title{
+            small{
+                display: block;
+            }
+        }
+
+        background-color: white !important;
+        margin: 0 !important;
+        width: 100% !important;
+        text-align: center;
+        img{
+            max-height: 20vh;
+            width: auto;
+            margin: 0 auto;
+        }
+    }
+
 
 }

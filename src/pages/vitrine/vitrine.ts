@@ -1,8 +1,10 @@
+import { AuthProvider } from './../../providers/auth/auth';
+import { VitrineProvider } from './../../providers/vitrine/vitrine';
 import { ComprarPage } from './../comprar/comprar';
 import { Categoria } from './../../models/categoria';
 import { Snack } from './../../models/snack';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, Refresher, ModalController, Modal, AlertController } from 'ionic-angular';
+import { IonicPage, LoadingController, Refresher, ModalController, Modal, AlertController, Config } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 @IonicPage()
@@ -17,32 +19,37 @@ export class VitrinePage {
   public filterSelect: string = 'Todos';
 
   constructor(private _loaderCtrl: LoadingController,
+    private _vitrineProvider: VitrineProvider,
     private _http: HttpClient,
+    private _config: Config,
     private _allertCtrl: AlertController,
     private _modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
-    this._loadVitrine();
+    if(this._config.get(AuthProvider.ACCESS_TOKEN_KEY)){
+      this._loadVitrine();
+    }
   }
 
   private _loadVitrine(_refresher?: Refresher): void
   {
     let _loader = this._loaderCtrl.create({ content: 'carregando produtos' });
-    _loader.present();
-    this._http.get<any>('http://localhost:8101/mock/categorias.json')
-      .mergeMap(res => { 
-        this.categorias = res.data;        
-        return this._http.get<any>('http://localhost:8101/mock/listagem.json');
-      })    
+    _loader.present();   
+
+    this._vitrineProvider.listarCategorias()
+      .mergeMap( (categorias : Categoria[]) => {
+        this.categorias = categorias;
+        return this._vitrineProvider.listarProdutos();
+      }) 
       .finally(() =>{
         _loader.dismiss(); 
         if (_refresher) 
           _refresher.complete();
        })
       .subscribe( 
-        res => this.snacks = res.data,
-        error => console.log(error)        
+        (_snacks: Snack[]) => this.snacks = _snacks,
+          error => console.log(error)        
        );
   }
 
@@ -62,9 +69,9 @@ export class VitrinePage {
       let c = this.categorias[i];
       alert.addInput({
         type: 'radio',
-        label: c.nome,
-        value: c.nome,
-        checked: this.filterSelect == c.nome
+        label: c.Nome,
+        value: c.Nome,
+        checked: this.filterSelect == c.Nome
       });
     }
     alert.addButton('cancelar');

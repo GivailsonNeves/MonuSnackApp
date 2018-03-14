@@ -3,11 +3,11 @@
   <form (ngSubmit)="login()" [formGroup]="formLogin" padding>    
       <ion-item>
         <ion-label color="light" floating>usuário</ion-label>
-        <ion-input  type="text" formControlName="login" required></ion-input>
+        <ion-input  type="text" formControlName="username" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="light" floating>senha</ion-label>
-        <ion-input type="password" formControlName="senha" required></ion-input>
+        <ion-input type="password" formControlName="password" required></ion-input>
       </ion-item>
       <button [disabled]="!formLogin.valid" ion-button full>Entrar</button>
   </form>

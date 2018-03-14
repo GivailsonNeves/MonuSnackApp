@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Config } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
@@ -10,6 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/finally';
+import { CONFIG, DATABASE_CONFIG } from './app-config';
+import { ServiceProvider } from '../providers/service/service';
+import { AuthProvider } from '../providers/auth/auth';
+import { IonicStorageModule } from '@ionic/storage';
+import { VitrineProvider } from '../providers/vitrine/vitrine';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,8 @@ import 'rxjs/add/operator/finally';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp,{ mode: 'md'}),
+    IonicModule.forRoot(MyApp,CONFIG),
+    IonicStorageModule.forRoot(DATABASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -27,7 +33,10 @@ import 'rxjs/add/operator/finally';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider,
+    AuthProvider,
+    VitrineProvider
   ]
 })
 export class AppModule {}

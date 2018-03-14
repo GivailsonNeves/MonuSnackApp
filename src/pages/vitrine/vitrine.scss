@@ -37,7 +37,7 @@ page-vitrine {
         .toolbar-background{
             background: transparent;
         }
-        ion-title{
+        ion-title{            
             p{
                 color: map-get($map: $colors, $key: dark);
                 font-weight: bold;                     
@@ -93,5 +93,22 @@ page-vitrine {
                 margin-right: 15px;
             }
         }
+    }
+    ion-content{
+        ion-grid
+        {
+            margin-bottom: 25px;
+        }
+        .fab{
+            opacity: .8;
+            .button-inner {
+                
+              img {
+                display: block;
+                width: 75%;
+              }
+            }
+        }
+
     }
 }

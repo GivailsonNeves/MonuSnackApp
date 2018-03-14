@@ -1,3 +1,6 @@
+import { AuthProvider } from './../../providers/auth/auth';
+import { Auth } from './../../models/auth';
+import { HttpClient } from '@angular/common/http';
 import { VitrinePage } from './../vitrine/vitrine';
 import { RecuperarSenhaPage } from './../recuperar-senha/recuperar-senha';
 import { Component } from '@angular/core';
@@ -14,7 +17,9 @@ export class LoginPage {
   private formLogin: FormGroup;
 
   constructor(private _navCtrl: NavController, 
+    private _auth: AuthProvider,
     private _modalCtrl: ModalController,
+    private _http: HttpClient,
     private _formBuilder: FormBuilder) {
 
     this._prepareForm();
@@ -24,18 +29,23 @@ export class LoginPage {
   {
     this.formLogin = this._formBuilder.group(
       {
-        login: ['afdsf', Validators.required],
-        senha: ['', Validators.required]        
+        username: ['gneves@monumenta.com.br', [Validators.required, Validators.email]],
+        password: ['123456', Validators.required]        
       }
     );
   }
 
   login()
-  {    
-    /** Todo -> login de usuário */
-    this._navCtrl.setRoot(VitrinePage.name, { nome: 'zé'}, 
-      { animation: "ios-transition", direction: "forward"}
-    );
+  { 
+    this._auth.login(this.formLogin.value)    
+      .subscribe(
+        res => {                    
+          this._navCtrl.setRoot(VitrinePage.name, { nome: 'zé'}, 
+             { animation: "ios-transition", direction: "forward"}
+          );
+        },
+        error => console.log(error)
+      );
   }
 
   recovery()

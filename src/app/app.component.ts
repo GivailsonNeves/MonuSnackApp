@@ -1,9 +1,11 @@
+import { AuthProvider } from './../providers/auth/auth';
 import { VitrinePage } from './../pages/vitrine/vitrine';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import 'rxjs/add/operator/finally';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,11 +15,16 @@ export class MyApp {
 
   rootPage: any = LoginPage.name;
 
+  /** Definição do array utilizado para a composição do site menu */
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, 
+    private _auth: AuthProvider,
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen) {
     this.initializeApp();
     
+    /** Lista de páginas, tal qual um sistema de rotas */
     this.pages = [
       { title: 'Saldo e extrato', component: VitrinePage.name, icon: 'monueda_amarela.png' },
       { title: 'Vitrine', component: VitrinePage.name, icon: 'vitrine.png' },
@@ -34,8 +41,20 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {      
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      this._auth.checkLogged()
+        .finally(() => {
+          this.statusBar.styleDefault();
+          this.splashScreen.hide();
+        })
+        .subscribe( logged => {
+          if (logged){
+            this.nav.setRoot(VitrinePage.name);
+          }else{
+            this.nav.setRoot(LoginPage.name);
+          }
+        });
+
+
     });
   }
 
