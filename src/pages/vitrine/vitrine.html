@@ -36,14 +36,14 @@
   </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let s of snacks" col-6>
+      <ion-col *ngFor="let s of snacks" col-6 [hidden]="filterSelect != s.Categoria.Nome && filterSelect != 'Todos'">
         <snack-item [snack]="s" (tap)="modalComprar(s)"></snack-item>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-fab bottom center>
     <button color="destak" ion-fab>
-      <img src="../../assets/icon/qrcode.png" alt=""><br>      
+      <img src="./assets/icon/qrcode.png" alt=""><br>      
     </button>
   </ion-fab>
 

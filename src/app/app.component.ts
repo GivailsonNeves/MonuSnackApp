@@ -2,7 +2,7 @@ import { AuthProvider } from './../providers/auth/auth';
 import { VitrinePage } from './../pages/vitrine/vitrine';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import 'rxjs/add/operator/finally';
@@ -18,9 +18,12 @@ export class MyApp {
   /** Definição do array utilizado para a composição do site menu */
   pages: Array<{title: string, component: any, icon: string}>;
 
+  private reverseAnimate: boolean = false;
+
   constructor(public platform: Platform, 
     private _auth: AuthProvider,
     public statusBar: StatusBar, 
+    private _menuCtrl: MenuController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
     
@@ -58,7 +61,28 @@ export class MyApp {
     });
   }
 
-  openPage(page) {    
+  public logout()
+  {
+    this._auth.logOut();
+    this.closeMenu();
+    this.nav.setRoot(LoginPage.name);
+  }
+
+  public openPage(page) {    
     this.nav.setRoot(page.component);
+    this.closeMenu();
+  }
+
+  public closeHistorico():void{
+    this._menuCtrl.close('right');
+  }
+
+  public closeMenu(): void
+  {
+    this.reverseAnimate = true;
+    this._menuCtrl.close('left');
+    setTimeout(() => {      
+      this.reverseAnimate = false;
+    }, 250);
   }
 }

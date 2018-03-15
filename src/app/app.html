@@ -1,8 +1,8 @@
 <!-- Menu de navegação principal -->
-<ion-menu side="left" class="esquerda" show [content]="content">
+<ion-menu side="left" class="esquerda" [class.hidemenu]="reverseAnimate" show swipeEnabled="false" [content]="content">
   <ion-header>    
     <ion-toolbar>
-      <ion-title menuClose>        
+      <ion-title (tap)="closeMenu()">        
         <p>
           <ion-icon color="primary" name="arrow-back"></ion-icon> 
           <span>Bem vindo(a),</span> 
@@ -14,13 +14,13 @@
 
   <ion-content padding>
     <ion-list padding="left" no-lines>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-thumbnail item-start>
-          <img src="../assets/icon/{{p.icon}}">
+          <img src="./assets/icon/{{p.icon}}">
         </ion-thumbnail>
         {{p.title}}
       </button>
-      <button ion-item menuClose>
+      <button ion-item (tap)="logout()">
         <ion-icon color="primary" name="power"></ion-icon>
         &nbsp;&nbsp; Sair
       </button>
@@ -31,15 +31,37 @@
 <!-- Menu de navegação principal -->
 
 <!-- Visualização de histórico de compras -->
-<ion-menu side="right" [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Histórico de gastos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-menu class="direita" side="right" [content]="content">  
 
-  <ion-content>
-    <!-- conteúdo do histórico -->
+  <ion-content padding>
+    <div class="historiContent">
+      <h2 (tap)="closeHistorico()">Extrato</h2>
+      <p>
+        <small>Você possui</small>
+        <strong>150,00</strong>
+      </p>
+      <br>
+      <ion-segment [(ngModel)]="icons" color="light">
+        <ion-segment-button value="camera">
+          <span>
+            <strong>2017</strong>
+            <small>janeiro</small>
+          </span>
+        </ion-segment-button>
+        <ion-segment-button value="bookmark">
+          <span>
+            <strong>2017</strong>
+            <small>janeiro</small>
+          </span>
+        </ion-segment-button>
+        <ion-segment-button value="bookmark">
+          <span>
+            <strong>2017</strong>
+            <small>janeiro</small>
+          </span>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
   </ion-content>
 
 </ion-menu>

@@ -21,12 +21,57 @@
     }
 }
 ion-menu {
+    &.direita{
+        //background-color: rgba(0, 0, 0, .8);
+        .content{                        
+            background: map-get($map: $colors, $key: secondary);
+            .historiContent{
+                padding: 20px;
+                color: white;
+                h2, strong{
+                    color: map-get($map: $colors, $key: primary);
+                }
+                h2{                
+                    padding-left: 15px;
+                    background: {
+                        image: url(../assets/icon/historico.png);
+                        position: center left;
+                        repeat: no-repeat;
+                    }
+    
+                }
+                strong{
+                    display: block;
+                }
+                .segment-button{
+                    height: auto;
+                    line-height: 1.8rem;
+                    text-align: left;
+                }
+                &>p{
+                    font-size: 2rem;
+                    strong{
+                        padding-left: 25px;
+                        background: {
+                          image: url(../assets/icon/monueda_branca.png);
+                          position: center left;
+                          repeat: no-repeat;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+    }
     &.esquerda{        
         background: {
           image: url(../assets/imgs/bg_menu.png);
           color: rgba(black,.6);
           repeat: no-repeat;
-          position: 0 0;       
+          position: 0 0;                
+          
         }
 
         ion-title{
@@ -68,6 +113,20 @@ ion-menu {
             animation-duration: .2s;
             animation-timing-function: ease-out;   
             animation-iteration-count: 1;
+        }
+        &.hidemenu {
+            animation-name: MENU-MOVE-REVERSE;
+            animation-duration: .2s;
+            animation-timing-function: ease-in;   
+            animation-iteration-count: 1;
+
+            background-position-x: -150px;
+            background-position-y: -240px;
+
+            .menu-inner{
+                opacity: 0;
+                transition: opacity .2s;
+            }
         }
         .menu-inner{
             &::after {
@@ -168,3 +227,15 @@ ion-menu[type=overlay] .show-backdrop{
     background-position-y: 0;
   }
 }
+
+@-webkit-keyframes MENU-MOVE-REVERSE {
+  from {
+      background-position-x: 0;
+      background-position-y: 0;
+    }
+    to {
+        background-position-x: -150px;
+        background-position-y: -240px;
+  }
+}
+

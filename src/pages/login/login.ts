@@ -15,6 +15,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 export class LoginPage {
 
   private formLogin: FormGroup;
+  public sending: boolean = false;
 
   constructor(private _navCtrl: NavController, 
     private _auth: AuthProvider,
@@ -37,7 +38,11 @@ export class LoginPage {
 
   login()
   { 
-    this._auth.login(this.formLogin.value)    
+    this.sending = true;
+    this._auth.login(this.formLogin.value)  
+      .finally( () => {
+        this.sending = false;
+      })  
       .subscribe(
         res => {                    
           this._navCtrl.setRoot(VitrinePage.name, { nome: 'zé'}, 

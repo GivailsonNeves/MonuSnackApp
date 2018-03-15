@@ -9,7 +9,11 @@
         <ion-label color="light" floating>senha</ion-label>
         <ion-input type="password" formControlName="password" required></ion-input>
       </ion-item>
-      <button [disabled]="!formLogin.valid" ion-button full>Entrar</button>
+      <button [disabled]="!formLogin.valid || sending" ion-button full>
+        {{
+          sending ? 'Aguarde': 'Entrar'
+        }}
+      </button>
   </form>
   <button (tap)="recovery()" ion-button clear>Esqueceu a senha?</button>
 </ion-content>

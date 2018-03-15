@@ -4,7 +4,7 @@ import { ComprarPage } from './../comprar/comprar';
 import { Categoria } from './../../models/categoria';
 import { Snack } from './../../models/snack';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, Refresher, ModalController, Modal, AlertController, Config } from 'ionic-angular';
+import { IonicPage, LoadingController, Refresher, ModalController, Modal, AlertController, Config, MenuController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 @IonicPage()
@@ -20,6 +20,7 @@ export class VitrinePage {
 
   constructor(private _loaderCtrl: LoadingController,
     private _vitrineProvider: VitrineProvider,
+    private _menuCtrl: MenuController,
     private _http: HttpClient,
     private _config: Config,
     private _allertCtrl: AlertController,
@@ -90,7 +91,7 @@ export class VitrinePage {
   }
 
   public mostrarHistorico():void{
-    alert('xii')
+    this._menuCtrl.open('right');
   }
 
   public modalComprar(_snack: Snack):void{
