@@ -1,0 +1,27 @@
+page-como-funciona {
+
+    .imagem{
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        border: 8px map-get($map: $colors, $key: destak) solid;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        img{
+            width: 100%;
+        }
+    }
+    h2{
+        color: map-get($map: $colors, $key: destak);
+        font-size: 2rem;
+    }
+    .texto{
+        max-width: 260px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: left;
+    }
+   
+
+}

@@ -90,10 +90,6 @@ export class VitrinePage {
     this._loadVitrine(_refresher);
   }
 
-  public mostrarHistorico():void{
-    this._menuCtrl.open('right');
-  }
-
   public modalComprar(_snack: Snack):void{
     
     let _modal: Modal = this._modalCtrl.create(ComprarPage.name, 

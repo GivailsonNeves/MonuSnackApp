@@ -1,11 +1,13 @@
+import { DiaDaCervejaPage } from './../pages/dia-da-cerveja/dia-da-cerveja';
 import { AuthProvider } from './../providers/auth/auth';
 import { VitrinePage } from './../pages/vitrine/vitrine';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, MenuController } from 'ionic-angular';
+import { Nav, Platform, MenuController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import 'rxjs/add/operator/finally';
+import { ComoFuncionaPage } from '../pages/como-funciona/como-funciona';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,20 +21,23 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: string}>;
 
   private reverseAnimate: boolean = false;
+  public saldo: number = 0;
 
   constructor(public platform: Platform, 
+    _events: Events,
     private _auth: AuthProvider,
     public statusBar: StatusBar, 
     private _menuCtrl: MenuController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
     
+    _events.subscribe("ATUALIZAR_SALDO", data => this._atualizarSaldo(data));
     /** Lista de páginas, tal qual um sistema de rotas */
     this.pages = [
-      { title: 'Saldo e extrato', component: VitrinePage.name, icon: 'monueda_amarela.png' },
+      { title: 'Saldo e extrato', component: 'SaldoExtrato', icon: 'monueda_amarela.png' },
       { title: 'Vitrine', component: VitrinePage.name, icon: 'vitrine.png' },
-      { title: 'Como funciona', component: VitrinePage.name, icon: 'duvida.png' },
-      { title: 'O dia da serveja', component: VitrinePage.name, icon: 'cerveja.png' },
+      { title: 'Como funciona', component: ComoFuncionaPage.name, icon: 'duvida.png' },
+      { title: 'O dia da serveja', component: DiaDaCervejaPage.name, icon: 'cerveja.png' },
     ];
 
   }
@@ -56,9 +61,8 @@ export class MyApp {
             this.nav.setRoot(LoginPage.name);
           }
         });
-
-
     });
+    
   }
 
   public logout()
@@ -69,7 +73,11 @@ export class MyApp {
   }
 
   public openPage(page) {    
-    this.nav.setRoot(page.component);
+    if (page.component == "SaldoExtrato"){
+      this._menuCtrl.open('right');
+    }else{
+      this.nav.setRoot(page.component);
+    }
     this.closeMenu();
   }
 
@@ -84,5 +92,10 @@ export class MyApp {
     setTimeout(() => {      
       this.reverseAnimate = false;
     }, 250);
+  }
+
+  private _atualizarSaldo(_data: any):void
+  {
+    this.saldo = _data.saldo;
   }
 }

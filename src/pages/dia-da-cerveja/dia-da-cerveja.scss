@@ -1,0 +1,29 @@
+page-dia-da-cerveja {
+
+    .content {      
+      background: {
+          image: url(../assets/imgs/bg_cerveja.jpg);
+          size: cover;
+          position: center bottom;
+          repeat: no-repeat;
+      }
+      .title{
+          margin-top: 20px;
+      }
+      .valor{
+          float: right;
+          margin-top: 40px;
+      }
+      .fab {
+        opacity: .8;
+        .button-inner {
+          img {
+            display: block;
+            width: 75%;
+          }
+        }
+      }
+
+    }
+
+}

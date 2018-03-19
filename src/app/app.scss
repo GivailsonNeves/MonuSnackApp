@@ -191,7 +191,40 @@ ion-menu[type=overlay] .show-backdrop{
     }
 }
 
+.bullet-valor{
+    background: map-get($map: $colors, $key: secondary);
+    color: map-get($map: $colors, $key: primary);
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 22px;
+    position: relative;
+    span{
+        display: block;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        margin-top: -15px;
+        padding-left: 16px;
+        &::before{
+            content: "";
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            left: -8px;
+            top: 4px;
+            background: {
+              image: url(../assets/icon/monueda_branca.png);
+              position: center center;
+              repeat: no-repeat;
+              size: 100%;
+            }
 
+        }
+    }
+}
 .alert-md {
     [aria-checked=true] {
 
@@ -211,6 +244,102 @@ ion-menu[type=overlay] .show-backdrop{
     .alert-button
     {
         color: map-get($map: $colors, $key: checked);
+    }
+
+}
+
+page-vitrine, page-como-funciona, page-dia-da-cerveja{
+
+    ion-header {
+      background-color: map-get($map: $colors, $key: primary);
+      &::after {
+        background-image: none !important;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        background: {
+          image: url(../assets/imgs/aba.png);
+          repeat: no-repeat;
+          position: top right;
+        }
+        top: 0;
+        left: 0;
+        width: 50vw;
+        height: 150px;
+        @media (min-width: 356px) {
+          background-position: top left;
+        }
+      }
+      .toolbar {
+        min-height: 26px;
+        hr {
+          padding: 0;
+          margin: 0 0 10px 0;
+          background-color: rgba(white, .8);
+          min-width: 180px;
+        }
+        button {
+          text-transform: none;
+          margin-right: 18px;
+        }
+      }
+      .toolbar-background {
+        background: transparent;
+      }
+      ion-title {
+        p {
+          color: map-get($map: $colors, $key: dark);
+          font-weight: bold;
+          margin: 15px 0 0;
+          padding-right: 10px;
+          position: relative;
+          small {
+            color: map-get($map: $colors, $key: destak);
+            display: inline-block;
+            margin-right: 25px;
+            position: relative;
+            font-weight: normal;
+            &::before {
+              position: absolute;
+              content: "";
+              top: -2px;
+              left: 45px;
+              width: 18px;
+              height: 23px;
+              background: {
+                image: url(../assets/icon/monueda_black.png);
+                position: center center;
+                repeat: no-repeat;
+              }
+            }
+          }
+          &::after {
+            content: "";
+            background: {
+              image: url(../assets/icon/historico.png);
+              position: center center;
+              repeat: no-repeat;
+            }
+            position: absolute;
+            top: 5px;
+            right: 0;
+            width: 7px;
+            height: 15px;
+            ;
+          }
+        }
+      }
+      .toolbar-content {
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        ion-item {
+          max-width: 65%;
+          margin-right: 15px;
+        }
+      }
     }
 
 }
