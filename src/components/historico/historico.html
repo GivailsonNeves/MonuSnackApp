@@ -1,0 +1,34 @@
+<!-- Generated template for the HistoricoComponent component -->
+<div>
+  <ion-segment [(ngModel)]="mes" (ionChange)="trocaAba()" color="light">
+    <ion-segment-button value="1">
+      <span>
+        <strong>2017</strong>
+        <small>janeiro</small>
+      </span>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <span>
+        <strong>2017</strong>
+        <small>janeiro</small>
+      </span>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <span>
+        <strong>2017</strong>
+        <small>janeiro</small>
+      </span>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-slides #sldHistorico>
+    <ion-slide>
+      <h1>Slide 1</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Slide 3</h1>
+    </ion-slide>
+  </ion-slides>
+</div>

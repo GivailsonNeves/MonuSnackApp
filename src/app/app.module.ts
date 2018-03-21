@@ -15,6 +15,7 @@ import { ServiceProvider } from '../providers/service/service';
 import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { VitrineProvider } from '../providers/vitrine/vitrine';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { VitrineProvider } from '../providers/vitrine/vitrine';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp,CONFIG),
-    IonicStorageModule.forRoot(DATABASE_CONFIG)
+    IonicStorageModule.forRoot(DATABASE_CONFIG),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

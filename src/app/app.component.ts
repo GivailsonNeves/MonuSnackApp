@@ -3,7 +3,7 @@ import { AuthProvider } from './../providers/auth/auth';
 import { VitrinePage } from './../pages/vitrine/vitrine';
 import { LoginPage } from './../pages/login/login';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, MenuController, Events } from 'ionic-angular';
+import { Nav, Platform, Slides, MenuController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import 'rxjs/add/operator/finally';
@@ -21,12 +21,12 @@ export class MyApp {
   pages: Array<{title: string, component: any, icon: string}>;
 
   private reverseAnimate: boolean = false;
-  public saldo: number = 0;
+  public saldo: number = 0;  
 
   constructor(public platform: Platform, 
     _events: Events,
     private _auth: AuthProvider,
-    public statusBar: StatusBar, 
+    public statusBar: StatusBar,     
     private _menuCtrl: MenuController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -82,7 +82,7 @@ export class MyApp {
   }
 
   public closeHistorico():void{
-    this._menuCtrl.close('right');
+    this._menuCtrl.close('right');    
   }
 
   public closeMenu(): void
