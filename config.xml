@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="br.com.monumenta.monusnack2" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MonuSnack</name>
+    <description>É a sua nova forma de lanchar na Monu e a Lari é a geladeira que vai matar a sua fome!</description>
+    <author email="etavares@monumenta.com.br" href="http://www.monumenta.com.br/">Monumenta</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -17,6 +17,7 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="Orientation" value="portrait" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
@@ -82,5 +83,11 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <engine name="android" spec="~7.0.0" />
+    <plugin name="phonegap-plugin-push" spec="^1.10.7">
+        <variable name="SENDER_ID" value="85075801930" />
+    </plugin>
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.0">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
+    </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>

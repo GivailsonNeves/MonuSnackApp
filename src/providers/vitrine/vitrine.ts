@@ -24,6 +24,11 @@ export class VitrineProvider {
 
   }
 
+  public buscarProduto(code:string):Observable<Snack>
+  {
+    return this._service.request(ServiceProvider.METHOD_GET, 'api/produto');
+  }
+
   public listarCategorias(): Observable<Categoria[]> {
 
     return this._service.request(ServiceProvider.METHOD_GET, 'api/produto/categorias')

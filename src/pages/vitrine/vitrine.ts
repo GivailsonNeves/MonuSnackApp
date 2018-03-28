@@ -6,6 +6,7 @@ import { Snack } from './../../models/snack';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, Refresher, ModalController, Modal, AlertController, Config, MenuController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class VitrinePage {
   constructor(private _loaderCtrl: LoadingController,
     private _vitrineProvider: VitrineProvider,
     private _menuCtrl: MenuController,
+    private barcodeScanner: BarcodeScanner,
     private _http: HttpClient,
     private _config: Config,
     private _allertCtrl: AlertController,
@@ -99,6 +101,16 @@ export class VitrinePage {
       console.log(data);
     });
     _modal.present();
+  }
+
+  public capturarProduto():void
+  {
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+      this._allertCtrl.create({title: "Código", message: barcodeData.text}).present();
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 
 }

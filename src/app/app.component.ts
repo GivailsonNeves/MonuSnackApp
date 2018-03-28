@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import 'rxjs/add/operator/finally';
 import { ComoFuncionaPage } from '../pages/como-funciona/como-funciona';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,6 +25,7 @@ export class MyApp {
   public saldo: number = 0;  
 
   constructor(public platform: Platform, 
+    private push: Push,
     _events: Events,
     private _auth: AuthProvider,
     public statusBar: StatusBar,     
@@ -49,6 +51,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {      
+      this._iniciarPush();
       this._auth.checkLogged()
         .finally(() => {
           this.statusBar.styleDefault();
@@ -65,6 +68,30 @@ export class MyApp {
     
   }
 
+  private _iniciarPush():void
+  {
+    const options: PushOptions = {
+      android: {        
+        senderID: '785091263013',
+        topics: ['all']
+      },
+      ios: {        
+        alert: 'true',
+        badge: true,
+        sound: 'false',
+        topics: ['all']
+      }
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+
+
+    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+
+    pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+  }
   public logout()
   {
     this._auth.logOut();

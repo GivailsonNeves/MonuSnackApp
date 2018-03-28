@@ -16,6 +16,8 @@ import { AuthProvider } from '../providers/auth/auth';
 import { IonicStorageModule } from '@ionic/storage';
 import { VitrineProvider } from '../providers/vitrine/vitrine';
 import { ComponentsModule } from '../components/components.module';
+import { Push } from '@ionic-native/push';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ComponentsModule } from '../components/components.module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
     AuthProvider,
-    VitrineProvider
+    VitrineProvider,    
+    BarcodeScanner,
+    Push,    
   ]
 })
 export class AppModule {}
